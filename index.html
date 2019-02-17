@@ -11,23 +11,25 @@
     <title>Searching</title>
   </head>
   <body class="bg-light">
+    <template id="search-template">
+      <div>
+        <input type="text"
+        v-model="query"
+        class="form-control"
+        placeholder="Type Something"
+        @keydown="searching">
+
+        <div id="result" class="list-group" v-for="result in results">
+          <a class="list-group-item list-group-item-action p-2" @click="select">{{ result }}</a>
+        </div>
+      </div>
+    </template>
+
+
     <div id="app" class="container my-4">
       <div class="row">
         <div class="col-md-6 m-auto">
-          <input type="text"
-            v-model="query"
-            class="form-control"
-            placeholder="Type Something"
-            @keydown="searching">
-
-          <div id="result">
-            <ul v-for="result in results" class="list-group">
-                <li
-                  class="list-group-item rounded-0 p-2 border-top-0"
-                  @click="select">
-                  {{ result }}</li>
-              </ul>
-          </div>
+          <search-component></search-component>
         </div>
       </div>
     </div>
