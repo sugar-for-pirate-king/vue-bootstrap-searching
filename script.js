@@ -20,6 +20,7 @@ app = new Vue({
         }
       })
     },
+
     select(event){
       this.query = event.target.outerText
       this.results = []

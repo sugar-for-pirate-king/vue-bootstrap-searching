@@ -18,13 +18,12 @@
             v-model="query"
             class="form-control"
             placeholder="Type Something"
-            @keydown="searching"
-            @key.>
+            @keydown="searching">
 
           <div id="result">
             <ul v-for="result in results" class="list-group">
                 <li
-                  class="list-group-item p-2"
+                  class="list-group-item rounded-0 p-2 border-top-0"
                   @click="select">
                   {{ result }}</li>
               </ul>
