@@ -19,15 +19,21 @@ Vue.component('search-component', {
       this.masterData.forEach((data) => {
         dataLower = data.toLowerCase()
 
-        if(dataLower.includes(this.query)) {
+        if(dataLower.includes(this.query.toLowerCase())) {
           this.results.push(data)
         }
       })
+
+      this.keyMonitor()
     },
 
     select(event){
       this.query = event.target.outerText
       this.results = []
+    },
+
+    keyMonitor(){
+      // not implement ye
     }
   }
 })

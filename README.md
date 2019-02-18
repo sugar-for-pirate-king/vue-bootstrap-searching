@@ -6,4 +6,5 @@ To do:
 - [ ] Choosing result by key down/up.
 - [ ] Selecting result by tab.
 - [x] Using template component
+- [x] Support case insensitive
 
