@@ -17,7 +17,9 @@ Vue.component('search-component', {
     searching(){
       this.results = []
       this.masterData.forEach((data) => {
-        if(data.includes(this.query)) {
+        dataLower = data.toLowerCase()
+
+        if(dataLower.includes(this.query)) {
           this.results.push(data)
         }
       })
