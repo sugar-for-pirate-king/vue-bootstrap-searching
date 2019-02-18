@@ -60,6 +60,11 @@ Vue.component('search-component', {
         this.indexSelect -= 1
         this.results[this.indexSelect].keyWatch = true
       }
+
+      if(event.key == 'Enter'){
+        this.query = this.results[this.indexSelect].data
+        this.results = []
+      }
     }
   }
 })
