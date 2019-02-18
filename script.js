@@ -10,21 +10,32 @@ Vue.component('search-component', {
         'Emilia',
         'Nanahira'
       ],
-      selected: null
+      selected: null,
+      indexSelect: null
     }
   },
   methods: {
-    searching(){
+    searching(event){
       this.results = []
       this.masterData.forEach((data) => {
         dataLower = data.toLowerCase()
+        queryLower = this.query.toLowerCase()
 
-        if(dataLower.includes(this.query.toLowerCase())) {
-          this.results.push(data)
+        if(dataLower == queryLower){
+          return
+        }
+
+        if(dataLower.includes(queryLower)) {
+          result = {
+            data: data,
+            keyWatch: false
+          }
+
+          this.results.push(result)
         }
       })
 
-      this.keyMonitor()
+      this.keyMonitor(event)
     },
 
     select(event){
@@ -32,13 +43,25 @@ Vue.component('search-component', {
       this.results = []
     },
 
-    keyMonitor(){
-      // not implement ye
+    keyMonitor(event){
+      if(event.key == 'ArrowDown'){
+        if(this.indexSelect == null){
+          this.indexSelect = 0
+          this.results[this.indexSelect].keyWatch = true
+        }else {
+          this.results[this.indexSelect].keyWatch = false
+          this.indexSelect += 1
+          this.results[this.indexSelect].keyWatch = true
+        }
+      }
+
+      if(event.key == 'ArrowUp'){
+        this.results[this.indexSelect].keyWatch = false
+        this.indexSelect -= 1
+        this.results[this.indexSelect].keyWatch = true
+      }
     }
   }
 })
 
-
-app = new Vue({
-  el: '#app',
-})
+app = new Vue({ el: '#app' })
