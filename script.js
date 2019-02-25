@@ -44,6 +44,12 @@ Vue.component('search-component', {
     },
 
     keyMonitor(event){
+      if(typeof cacheQuery !== 'undefined') {
+        if(cacheQuery != this.query) {
+          this.indexSelect = null
+        }
+      }
+
       if(event.key == 'ArrowDown'){
         if(this.indexSelect == null){
           this.indexSelect = 0
@@ -65,6 +71,8 @@ Vue.component('search-component', {
         this.query = this.results[this.indexSelect].data
         this.results = []
       }
+
+      cacheQuery = this.query
     }
   }
 })
